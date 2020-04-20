@@ -65,7 +65,7 @@ func key2path(key []byte) string {
 
   // 2 byte layers deep, meaning a fanout of 256
   // optimized for 2^24 = 16M files per volume server
-  return fmt.Sprintf("/%02x/%02x/%s", mkey[0], mkey[1], b64key)
+  return fmt.Sprintf("@%02x@%02x@%s", mkey[0], mkey[1], b64key)
 }
 
 type sortvol struct {
@@ -190,4 +190,3 @@ func remote_head(remote string) bool {
   defer resp.Body.Close()
   return resp.StatusCode == 200
 }
-
